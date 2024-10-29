@@ -1,0 +1,377 @@
+127,98337494758553120178461797436346,Hide products with low stock,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""any_product_stock"",
+      ""parameters"": {
+        ""above_below"": ""below"",
+        ""amount"": 5
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""show_hide_product"",
+      ""parameters"": {
+        ""product_id"": null,
+        ""show_hide"": ""hide""
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""product_stock"",
+      ""parameters"": {
+        ""product_id"": null,
+        ""above_below"": ""above"",
+        ""amount"": 5
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""show_hide_product"",
+      ""parameters"": {
+        ""product_id"": null,
+        ""show_hide"": ""show""
+      }
+    }
+  }
+]}",1,inactive,2024-10-22 09:50:43,2024-10-22 09:51:36
+128,59361649768287998739667568471731,Put products on sale when 60 days old,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""any_product_older_than"",
+      ""parameters"": {
+        ""days"": 60
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""put_product_on_sale"",
+      ""parameters"": {
+        ""product_id"": null,
+        ""percentage"": 10
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""take_product_off_sale"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  }
+]}","0",inactive,2024-10-22 09:53:37,2024-10-22 09:53:37
+129,18823959443392839669904768761074,Boost products after a 25 deduction in sales,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""any_product_purchased"",
+      ""parameters"": {
+        ""amount_type"": ""percentage"",
+        ""perc_amount"": -25,
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""product_to_recommended"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""product_off_recommended"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  }
+]}",1,inactive,2024-10-22 09:58:13,2024-10-22 10:04:26
+130,54951391451643017040541967854029,Most recent on-sale product featured every 7 days,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""calculate_product"",
+      ""parameters"": {
+        ""product_filters"": {
+          ""on_sale"": ""1"",
+          ""featured"": ""0"",
+          ""show_in_category"": ""0"",
+          ""show_with_tag"": ""0"",
+          ""sortby"": ""most_recent""
+        },
+        ""days"": 90
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""product_to_recommended"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""make_product_featured"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""make_product_not_featured"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  }
+]}",1,inactive,2024-10-22 10:04:02,2024-10-22 10:04:14
+131,95309815874662492092907099258477,Scheduled sale,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""on_set_date"",
+      ""parameters"": {
+        ""start_date"": ""2024-12-26""
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""put_all_products_on_sale"",
+      ""parameters"": {
+        ""percentage"": 25
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""take_all_products_off_sale"",
+      ""parameters"": {}
+    }
+  }
+]}","0",inactive,2024-10-22 10:05:43,2024-10-22 10:05:43
+132,"03661999047165590450322699567365",Categories on sale after deduction in views,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""any_product_cat_viewed"",
+      ""parameters"": {
+        ""amount_type"": ""percentage"",
+        ""perc_amount"": -25,
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""put_category_on_sale"",
+      ""parameters"": {
+        ""cat_id"": null,
+        ""percentage"": 10
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""take_category_off_sale"",
+      ""parameters"": {
+        ""cat_id"": null
+      }
+    }
+  }
+]}","0",inactive,2024-10-22 10:07:05,2024-10-22 10:07:05
+133,16445284755481818204042517008766,Remove from recommended when no views,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""any_rec_product_clicked"",
+      ""parameters"": {
+        ""amount"": 0,
+        ""days"": 1
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""product_off_recommended"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 1
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""end_workflow"",
+      ""parameters"": {}
+    }
+  }
+]}",1,inactive,2024-10-22 10:08:51,2024-10-22 10:08:56
+134,56735892081716876642953109481720,Add to recommended highest revenue on-sale product every 7 days,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""calculate_product"",
+      ""parameters"": {
+        ""product_filters"": {
+          ""on_sale"": ""1"",
+          ""featured"": ""0"",
+          ""show_in_category"": ""0"",
+          ""show_with_tag"": ""0"",
+          ""sortby"": ""highest_revenue""
+        },
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""product_to_recommended"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""end_workflow"",
+      ""parameters"": {}
+    }
+  }
+]}",1,inactive,2024-10-22 10:10:25,2024-10-22 10:10:34
+135,51744329926097619355236600367101,Feature random category product every 2 days,"{""steps"":[
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""calculate_product"",
+      ""parameters"": {
+        ""product_filters"": {
+          ""on_sale"": ""0"",
+          ""featured"": ""0"",
+          ""show_in_category"": ""1"",
+          ""in_category"": ""324"",
+          ""show_with_tag"": ""0"",
+          ""sortby"": ""random""
+        },
+        ""days"": 7
+      }
+    }
+  },
+  {
+    ""type"": ""action"",
+    ""action"": {
+      ""name"": ""make_product_featured"",
+      ""parameters"": {
+        ""product_id"": null
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""wait_x_days"",
+      ""parameters"": {
+        ""days"": 2
+      }
+    }
+  },
+  {
+    ""type"": ""event"",
+    ""event"": {
+      ""name"": ""end_workflow"",
+      ""parameters"": {}
+    }
+  }
+]}",1,inactive,2024-10-22 10:17:28,2024-10-22 10:17:49

@@ -1,0 +1,9 @@
+#visibility,
+#post-visibility-select,
+#preview-action {
+    display: none;
+}
+
+.misc-pub-post-status {
+    display: none;
+}

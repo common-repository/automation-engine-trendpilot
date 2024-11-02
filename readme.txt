@@ -4,7 +4,7 @@ Tags: WooCommerce, Automation, Trendpilot, Analytics, Workflows
 Requires at least: 5.4.0
 Tested up to: 6.6.2
 Requires PHP: 7.4
-Stable tag: 1.2.1 
+Stable tag: 1.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -71,7 +71,19 @@ This plugin includes code from third-party libraries:
 Copyright (c) 2013-present, Cure53 and contributors.  
 See: https://github.com/cure53/DOMPurify for more details.
 
+This plugin uses the Login Form v18 template by Colorlib, licensed under CC BY 3.0. Modifications have been made to fit the needs of this plugin.
+
+Template: https://colorlib.com/wp/template/colorlib-regform-28/
+Author: https://colorlib.com/
+License: https://creativecommons.org/licenses/by/3.0/
+
 == Changelog ==
+
+= 1.2.2 =
+- Added new 'Dashboard' page to menu with pro wait list
+
+= 1.2.2 =
+- Added 'parameters' information to canvas blocks
 
 = 1.2.1 =
 - Fixed merge tag sanitization bug

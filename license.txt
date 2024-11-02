@@ -365,3 +365,9 @@ You may add additional accurate notices of copyright ownership.
 Exhibit B - “Incompatible With Secondary Licenses” Notice
 This Source Code Form is “Incompatible With Secondary Licenses”, as defined by the Mozilla Public License, v. 2.0.
 ------------------------------------------------------------------------
+
+This plugin uses the Login Form v18 template by Colorlib, licensed under CC BY 3.0. Modifications have been made to fit the needs of this plugin.
+
+Template: https://colorlib.com/wp/template/login-form-v18/
+Author: https://colorlib.com/
+License: https://creativecommons.org/licenses/by/3.0/

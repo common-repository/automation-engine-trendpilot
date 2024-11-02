@@ -173,7 +173,7 @@ class AETrendpilotPlugin {
 		global $wpdb;
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( __( 'You do not have permission to perform this action.', 'text-domain' ) );
+			wp_die( __( 'You do not have permission to perform this action.', 'automation-engine-trendpilot' ) );
 		}
 
 		// File path for workflow templates CSV
@@ -183,12 +183,14 @@ class AETrendpilotPlugin {
 		if ( file_exists( $workflow_templates_csv ) ) {
 			// Open the CSV file for reading
 			if ( ( $handle = fopen( $workflow_templates_csv, 'r' ) ) !== false ) {
-				// Skip the first row (CSV header)
+
 				fgetcsv( $handle );
+
+				// Get the current user ID
+				$current_user_id = get_current_user_id();
 
 				// Read each line as a CSV row
 				while ( ( $data = fgetcsv( $handle ) ) !== false ) {
-					$user_id = intval( $data[1] );
 					$unique_id = $data[2];
 					$name = $data[3];
 
@@ -209,14 +211,14 @@ class AETrendpilotPlugin {
 						$wpdb->insert(
 							$wpdb->prefix . 'trendpilot_workflow_templates',
 							[ 
-								'user_id' => $user_id,
+								'user_id' => $current_user_id,
 								'unique_id' => $unique_id,
 								'name' => $name,
-								'JSON' => $json,  // Use JSON from constant
+								'JSON' => $json,
 								'created' => $created,
 								'modified' => $modified,
 							],
-							[ '%d', '%s', '%s', '%s', '%s', '%s' ]  // Field formats
+							[ '%d', '%s', '%s', '%s', '%s', '%s' ]
 						);
 					}
 				}
@@ -225,6 +227,7 @@ class AETrendpilotPlugin {
 		}
 	}
 
+
 	/**
 	 * Imports workflows from CSV file into the table.
 	 */
@@ -232,7 +235,7 @@ class AETrendpilotPlugin {
 		global $wpdb;
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( __( 'You do not have permission to perform this action.', 'text-domain' ) );
+			wp_die( __( 'You do not have permission to perform this action.', 'automation-engine-trendpilot' ) );
 		}
 
 		// File path for workflows CSV

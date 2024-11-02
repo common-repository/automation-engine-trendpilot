@@ -14,7 +14,7 @@ class AETrendpilotAutomationEngine {
 	public function conditionally_enqueue_scripts( $hook ) {
 
 		// Only enqueue for the Automations page
-		if ( $hook == 'toplevel_page_aetp_automations' ) {
+		if ( $hook == 'automation-engine-by-trendpilot_page_aetp_automations' ) {
 
 			// Load DOMPurify.min.js for sanitization
 			wp_enqueue_script(

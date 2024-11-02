@@ -34,48 +34,209 @@ function snapping(drag, first) {
 
             drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/playblue.svg'><p class='blockyname'>Start Workflow</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Start Workflow</div></div><div class='hidden-properties'></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "end_workflow") {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/stopblue.svg'><p class='blockyname'>End or repeat workflow</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>End or repeat workflow (if repeat checked)</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/stopblue.svg" />
+                <p class="blockyname">End or repeat workflow</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">End or repeat workflow (if repeat checked)</div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_not_viewed"
-        ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/eyeblue.svg'><p class='blockyname'>Product X not viewed</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Product <span class='product-id-display'>X</span> not viewed for <span class='sinceDays'>X</span> days</div><div class='hidden-properties'></div>`;
+        ) { 
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/eyeblue.svg" />
+                <p class="blockyname">Product X not viewed</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Product <span class="product-id-display">X</span> not viewed for <span class="sinceDays">X</span> days</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_product_not_viewed"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/eyeblue.svg'><p class='blockyname'>Any product not viewed</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'><span>Any product</span> is not viewed for <span class='sinceDays'>X</span> days</div><div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/eyeblue.svg" />
+                <p class="blockyname">Any product not viewed</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo"><span>Any product</span> is not viewed for <span class="sinceDays">X</span> days</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"><input type="hidden" name="any_event" value="1" /></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_purchased"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/eyeblue.svg'><p class='blockyname'>Product purchased X times</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>When product <span class='product-id-display'>X</span> is purchased <span class='amountDisplay'>X times</span> in the last <span class='sinceDays'>X</span> days</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/eyeblue.svg" />
+                <p class="blockyname">Product purchased X times</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">When product <span class="product-id-display">X</span> is purchased <span class="amountDisplay">X times</span> in the last <span class="sinceDays">X</span> days</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_product_purchased"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/eyeblue.svg'><p class='blockyname'>Any product purchased X times</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>When <span>Any product</span> is purchased <span class='amountDisplay'>X times</span> in the last <span class='sinceDays'>X</span> days</div><div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/eyeblue.svg" />
+                <p class="blockyname">Any product purchased X times</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">When <span>Any product</span> is purchased <span class="amountDisplay">X times</span> in the last <span class="sinceDays">X</span> days</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"><input type="hidden" name="any_event" value="1" /></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "calculate_category"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/databaseorange.svg'><p class='blockyname'>Find Category</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Find <span class='datapointDisplay'>X</span> over the last <span class='sinceDays'>X</span> days</div></div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/databaseorange.svg'><p class='blockyname'>Find Category</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Find <span class='datapointDisplay'>X</span> over the last <span class='sinceDays'>X</span> days</div></div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Category passed to next steps</div>
+                    </div>
+                </div>
+            </div><div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "put_product_on_sale"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/actionblue.svg'><p class='blockyname'>Put product on sale</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Put <span class='product-id-display'>X</span> on sale at <span class='percentageDisplay'>X</span>% off</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/actionblue.svg" />
+                <p class="blockyname">Put product on sale</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Put <span class="product-id-display">X</span> on sale at <span class="percentageDisplay">X</span>% off</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "take_product_off_sale"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/actionblue.svg'><p class='blockyname'>Take product off sale</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Take product <span class='product-id-display'>X</span> off sale</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/actionblue.svg" />
+                <p class="blockyname">Take product off sale</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Take product <span class="product-id-display">X</span> off sale</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (
             drag.querySelector(".blockelemtype").value == "put_all_products_on_sale"
         ) {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/actionblue.svg'><p class='blockyname'>Put all products on sale</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Put all products on sale at <span class='percentageDisplay'>X</span>% off</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/actionblue.svg" />
+                <p class="blockyname">Put all products on sale</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Put all products on sale at <span class="percentageDisplay">X</span>% off</div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (drag.querySelector(".blockelemtype").value == "9") {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/logred.svg'><p class='blockyname'>Add new log entry</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Add new <span>success</span> log entry</div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/logred.svg" />
+                <p class="blockyname">Add new log entry</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Add new <span>success</span> log entry</div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (drag.querySelector(".blockelemtype").value == "10") {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/logred.svg'><p class='blockyname'>Update logs</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Edit <span>Log Entry 1</span></div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/logred.svg" />
+                <p class="blockyname">Update logs</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Edit <span>Log Entry 1</span></div>
+            <div class="hidden-properties"></div>
+            `;
         } else if (drag.querySelector(".blockelemtype").value == "11") {
-            drag.innerHTML += `<div class='blockyleft'><img src='${assetURL}assets/errorred.svg'><p class='blockyname'>Prompt an error</p></div><div class='blockyright'><img src='${assetURL}assets/more.svg'></div><div class='blockydiv'></div><div class='blockyinfo'>Trigger <span>Error 1</span></div><div class='hidden-properties'></div>`;
+            drag.innerHTML += `
+            <div class="blockyleft">
+                <img src="${assetURL}assets/errorred.svg" />
+                <p class="blockyname">Prompt an error</p>
+            </div>
+            <div class="blockyright"><img src="${assetURL}assets/more.svg" /></div>
+            <div class="blockydiv"></div>
+            <div class="blockyinfo">Trigger <span>Error 1</span></div>
+            <div class="hidden-properties"></div>
+            `;
         }
 
-        // below are my custom main canvas blocks
         else if (
             drag.querySelector(".blockelemtype").value ==
             "take_all_products_off_sale"
@@ -100,6 +261,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Put category <span class="catIdDisplay">X</span> on sale at <span class='percentageDisplay'>X</span>% off</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Category passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "take_category_off_sale"
@@ -112,6 +282,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Take category <span class="catIdDisplay">X</span> off sale</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Category passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_not_purchased"
@@ -124,6 +303,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When product <span class='product-id-display'>X</span> is not purchased for <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value ==
@@ -137,6 +325,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When <span>Any product</span> is not purchased for <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "x_purchases_made"
@@ -159,6 +356,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Coupon <span class='idDisplay'>X</span> used <span class='amountDisplay'>X</span> times in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Coupon code passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_coupon_used"
@@ -171,6 +377,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Any coupon used <span class='amountDisplay'>X</span> times in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Coupon code passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_viewed"
@@ -183,6 +398,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When product <span class='product-id-display'>X</span> viewed <span class='amountDisplay'>X times</span> in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_product_viewed"
@@ -195,6 +419,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'><span>When any product</span> viewed <span class='amountDisplay'>X times</span> in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_cat_viewed"
@@ -207,6 +440,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When product category <span class="catIdDisplay">X</span> viewed <span class='amountDisplay'>X</span> times in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Category passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_product_cat_viewed"
@@ -219,6 +461,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When any product category viewed <span class='amountDisplay'>X</span> times in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Category passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_rec_product_clicked"
@@ -231,6 +482,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When any recommended product clicked <span class='amountDisplay'>X</span> times in last <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "upsell_clicked"
@@ -255,6 +515,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>When product <span class='product-id-display'>X</span> is older than <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "any_product_older_than"
@@ -267,6 +536,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'><span>When any product</span> is older than <span class='sinceDays'>X</span> days</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'><input type="hidden" name="any_event" value="1"></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "wait_x_days") {
             drag.innerHTML += `
@@ -299,6 +577,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Change <span class='product-id-display'>X</span>'s default price to <span class='priceDisplay'>X</span></div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "change_upsell_product"
@@ -311,6 +598,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Change upsell product to <span class='product-id-display'>X</span></div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "enable_disable_upsell"
@@ -335,6 +631,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Add <span class='product-id-display'>X</span> to recommended</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "product_off_recommended"
@@ -347,6 +652,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Remove <span class='product-id-display'>X</span> from recommended</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value ==
@@ -360,6 +674,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Show <span class='product-id-display'>X</span> on upsell, recommended & feature</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "make_product_featured"
@@ -372,6 +695,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Make <span class='product-id-display'>X</span> featured</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value ==
@@ -385,6 +717,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Make <span class='product-id-display'>X</span> not featured</div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "change_product_status"
@@ -397,6 +738,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Change <span class='product-id-display'>X</span>'s status to <span class='statusDisplay'>X</span></div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (
             drag.querySelector(".blockelemtype").value == "send_admin_alert"
@@ -459,6 +809,15 @@ function snapping(drag, first) {
                   <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
                   <div class='blockydiv'></div>
                   <div class='blockyinfo'>Change <span class='product-id-display'>product X</span>'s badge to <span class='badgeDisplay'>X</span> </div>
+                  <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
                   <div class='hidden-properties'></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "calculate_product") {
             drag.innerHTML += `
@@ -469,6 +828,15 @@ function snapping(drag, first) {
             <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
             <div class='blockydiv'></div>
             <div class='blockyinfo'>Find Product <span class='productFilterDisplay'>No Filters Selected</span> in last <span class='sinceDays'>X</span> days</div>
+            <div class="params-container">
+                <div class="blockydiv"></div>
+                <div class="data-tooltips">
+                    <div class="tooltip-icon-params">
+                        parameters
+                        <div class="tooltip-text">Product passed to next steps</div>
+                    </div>
+                </div>
+            </div>
             <div class='hidden-properties'></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "change_product_display") {
             drag.innerHTML += `
@@ -479,6 +847,15 @@ function snapping(drag, first) {
             <div class='blockyright'><img src='${assetURL}assets/more.svg'></div>
             <div class='blockydiv'></div>
             <div class='blockyinfo'>Change Product Display to <span class='product-id-display'>product X</span></div>
+            <div class="params-container">
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
             </div>
             <div class='hidden-properties'></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "product_stock") {
@@ -491,9 +868,14 @@ function snapping(drag, first) {
             <div class='blockydiv'></div>
             <div class='blockyinfo'>When product <span class='product-id-display'>X</span> stock <span class='above-below-display'>Above/below</span> <span class='amountDisplay'>X</span></div></div>
             <div class="params-container">
-              <div class="blockydiv"></div>
-              <div class="blockyparams">Product passed to next steps</div>
-            </div>
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
             <div class='hidden-properties'></div>`;
         } else if (drag.querySelector(".blockelemtype").value == "any_product_stock") {
             drag.innerHTML += `
@@ -505,9 +887,14 @@ function snapping(drag, first) {
             <div class='blockydiv'></div>
             <div class='blockyinfo'>When any product stock <span class='above-below-display'>Above/below</span> <span class='amountDisplay'>X</span></div></div>
             <div class="params-container">
-              <div class="blockydiv"></div>
-              <div class="blockyparams">Product passed to next steps</div>
-            </div>
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
             <div class='hidden-properties'></div>`;
         }else if (drag.querySelector(".blockelemtype").value == "show_hide_product") {
             drag.innerHTML += `
@@ -519,9 +906,14 @@ function snapping(drag, first) {
             <div class='blockydiv'></div>
             <div class='blockyinfo'><span class='show-hide-display'>Show/hide</span> Product <span class='product-id-display'>X</span> on archives</div></div>
             <div class="params-container">
-              <div class="blockydiv"></div>
-              <div class="blockyparams">Product passed to next steps</div>
-            </div> 
+                    <div class="blockydiv"></div>
+                    <div class="data-tooltips">
+                        <div class="tooltip-icon-params">
+                            parameters
+                            <div class="tooltip-text">Product passed to next steps</div>
+                        </div>
+                    </div>
+                  </div>
             <div class='hidden-properties'></div>`;
         }else if (drag.querySelector(".blockelemtype").value == "if_product_viewed") {
             drag.innerHTML += `

@@ -4,7 +4,7 @@
 Plugin Name: Automation Engine for Woocommerce
 Description: Product & store automation for Woocommerce
 Author: Trendpilot
-Version: 1.2.1
+Version: 1.2.3
 Plugin URI: https://trendpilot.io/downloads/
 Author URI: https://trendpilot.io
 License: GPL-3.0-or-later
@@ -21,7 +21,7 @@ if ( is_admin() && ! function_exists( 'is_plugin_active' ) ) {
 	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
 
-define( 'AETRENDPILOT_VERSION', '1.2' );
+define( 'AETRENDPILOT_VERSION', '1.2.3' );
 define( 'AETRENDPILOT_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'AETRENDPILOT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

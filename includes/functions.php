@@ -326,3 +326,58 @@ function trendpilot_flush_old_click_data() {
 }
 add_action( 'tpap_daily_workflow_checker', 'trendpilot_flush_old_click_data' );
 
+// Form submission handler
+function trendpilot_submit_waitlist() {
+	// Verify nonce
+	if ( ! isset( $_POST['trendpilot_nonce_field'] ) || ! wp_verify_nonce( $_POST['trendpilot_nonce_field'], 'trendpilot_waitlist_nonce' ) ) {
+		wp_die( 'Nonce verification failed.' );
+	}
+
+	// Validate form data
+	if ( ! isset( $_POST['first_name'], $_POST['last_name'], $_POST['your_email'] ) ) {
+		wp_die( 'Invalid form submission.' );
+	}
+
+	// Sanitize form data
+	$first_name = sanitize_text_field( $_POST['first_name'] );
+	$last_name = sanitize_text_field( $_POST['last_name'] );
+	$email = sanitize_email( $_POST['your_email'] );
+
+	// Log the data being sent
+	$data_to_send = array(
+		'first_name' => $first_name,
+		'last_name' => $last_name,
+		'email' => $email,
+	);
+
+	$response = wp_remote_post( 'https://trendpilot.io/wp-json/trendpilot/v1/pro-signup-sendgrid', array(
+		'method' => 'POST',
+		'headers' => array(
+			'Content-Type' => 'application/json',
+			'X-Requested-From' => 'trendpilot-plugin'
+		),
+		'body' => json_encode( $data_to_send ),
+	) );
+
+
+	// Check for WP error or non-200 response status
+	if ( is_wp_error( $response ) ) {
+		$error_message = $response->get_error_message();
+		wp_redirect( add_query_arg( 'status', 'error', wp_get_referer() ) );
+		exit;
+	} elseif ( wp_remote_retrieve_response_code( $response ) !== 200 ) {
+		// Log non-200 status for clarity
+		$status_code = wp_remote_retrieve_response_code( $response );
+		wp_redirect( add_query_arg( 'status', 'error', wp_get_referer() ) );
+		exit;
+	} else {
+		// Log the API response for confirmation
+		$response_body = wp_remote_retrieve_body( $response );
+
+		// Redirect with success status
+		wp_redirect( add_query_arg( 'status', 'success', wp_get_referer() ) );
+		exit;
+	}
+}
+add_action( 'admin_post_nopriv_trendpilot_submit_waitlist', 'trendpilot_submit_waitlist' );
+add_action( 'admin_post_trendpilot_submit_waitlist', 'trendpilot_submit_waitlist' );

@@ -193,97 +193,126 @@ class AETrendpilotAdmin {
 			}
 		}
 	}
-
 	// Add main menu
 	public function add_pro_main_menu() {
 
-		//The icon in Base64 format
+		// The icon in Base64 format
 		$icon_base64 = 'PHN2ZyB2ZXJzaW9uPSIxLjIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDM4MCA0MDEiIHdpZHRoPSIxOSIgaGVpZ2h0PSIyMCI+CiAgPHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJtMjI1LjkgMjM0YzAtNyA1LjYtMTIuNiAxMi42LTEyLjYgNi45IDAgMTIuNiA1LjYgMTIuNiAxMi42djQ3LjhjMCAzMy40LTI3LjEgNjAuNC02MC41IDYwLjQtMzMuMyAwLTYwLjQtMjctNjAuNC02MC40IDAtNTkuOCA0OC41LTEwOC4zIDEwOC4zLTEwOC4zaDIzLjljMzEuMyAwIDQ3LTM4IDI0LjktNjAuMS02LjQtNi40LTE1LjItMTAuMy0yNC45LTEwLjNoLTE0My41Yy0zMS4zIDAtNDcgMzgtMjQuOSA2MC4xIDYuNCA2LjQgMTUuMiAxMC4zIDI0LjkgMTAuM2gyMy45YzcgMCAxMi42IDUuNyAxMi42IDEyLjYgMCA3LTUuNiAxMi43LTEyLjYgMTIuN2gtMjMuOWMtMzMuNCAwLTYwLjQtMjcuMS02MC40LTYwLjUgMC0zMy40IDI3LTYwLjQgNjAuNC02MC40aDE0My41YzMzLjQgMCA2MC40IDI3IDYwLjQgNjAuNCAwIDMzLjQtMjcgNjAuNS02MC40IDYwLjVoLTIzLjljLTQ1LjkgMC04My4xIDM3LjEtODMuMSA4MyAwIDMxLjMgMzggNDcgNjAuMSAyNC45IDYuNC02LjQgMTAuNC0xNS4yIDEwLjQtMjQuOXoiLz4KPC9zdmc+Cg==';
 
-		//The icon in the data URI scheme
+		// The icon in the data URI scheme
 		$icon_data_uri = 'data:image/svg+xml;base64,' . $icon_base64;
 
+		// Main menu item
 		add_menu_page(
-			'Automation Engine by Trendpilot',
-			'Automation Engine by Trendpilot',
-			'manage_options',
-			'aetp_automations',
-			[ $this, 'aetp_automations_callback' ],
+			'Automation Engine by Trendpilot',   // Page title (what shows in header when viewing the page)
+			'Automation Engine by Trendpilot',   // Menu title (sidebar label)
+			'manage_options',                    // Capability
+			'trendpilot_dashboard',              // Menu slug
+			[ $this, 'trendpilot_dashboard_callback' ], // Callback function for the main page
 			$icon_data_uri,
 			3
 		);
+
+		// Explicitly add "Dashboard" as the first submenu item
+		add_submenu_page(
+			'trendpilot_dashboard',              // Parent slug
+			'Dashboard',                         // Page title
+			'Dashboard',                         // Menu title in sidebar
+			'manage_options',                    // Capability
+			'trendpilot_dashboard',              // Menu slug (same as main menu to show this by default)
+			[ $this, 'trendpilot_dashboard_callback' ] // Callback function for Dashboard
+		);
 	}
 
+	// Define other submenus
 	public function add_pro_submenus() {
 		$workflow = new AETrendpilotWorkflow();
 
 		// Automations submenu
 		add_submenu_page(
-			'aetp_automations',              // Parent slug (same as the main menu slug)
-			'Automations',                   // Page title
-			'Automations',                   // Menu title
-			'manage_options',                // Capability
-			'aetp_automations',              // Menu slug
+			'trendpilot_dashboard',              // Parent slug
+			'Automations',                       // Page title
+			'Automations',                       // Menu title in sidebar
+			'manage_options',                    // Capability
+			'aetp_automations',                  // Menu slug
 			[ $this, 'aetp_automations_callback' ] // Callback function
 		);
 
 		// Analytics submenu
 		add_submenu_page(
-			'aetp_automations',              // Parent slug
-			'Analytics',                     // Page title
-			'Analytics',                     // Menu title
-			'manage_options',                // Capability
-			'aetp_analytics',          // Menu slug
+			'trendpilot_dashboard',              // Parent slug
+			'Analytics',                         // Page title
+			'Analytics',                         // Menu title
+			'manage_options',                    // Capability
+			'aetp_analytics',                    // Menu slug
 			[ $this, 'aetp_analytics_callback' ] // Callback function
 		);
 
-		// Feature Settings submenu
+		// Storefront Features submenu
 		add_submenu_page(
-			'aetp_automations',                  // Parent slug
-			'Storefront Features',                               // Page title
-			'Storefront Features',                               // Menu title
-			'manage_options',                         // Capability
-			'aetp_feature_settings',                    // Menu slug
-			array( $this, 'my_plugin_display_settings_page' )  // Callback function
+			'trendpilot_dashboard',              // Parent slug
+			'Storefront Features',               // Page title
+			'Storefront Features',               // Menu title
+			'manage_options',                    // Capability
+			'aetp_feature_settings',             // Menu slug
+			[ $this, 'my_plugin_display_settings_page' ] // Callback function
 		);
 
 		// Product Displays submenu
 		add_submenu_page(
-			'aetp_automations',                  // Parent slug
-			'Product Displays',                       // Page title
-			'Product Displays',                       // Menu title
-			'manage_options',                         // Capability
-			'edit.php?post_type=tp_product_display'     // Menu slug linking to custom post type list table
+			'trendpilot_dashboard',              // Parent slug
+			'Product Displays',                  // Page title
+			'Product Displays',                  // Menu title
+			'manage_options',                    // Capability
+			'edit.php?post_type=tp_product_display' // Menu slug linking to custom post type list table
 		);
-
-
 
 		// Settings submenu
 		add_submenu_page(
-			'aetp_automations',              // Parent slug
-			'Settings',                      // Page title
-			'Settings',                      // Menu title
-			'manage_options',                // Capability
-			'aetp_settings',                 // Menu slug
-			[ $this, 'aetrendpilot_settings' ]  // Callback function
+			'trendpilot_dashboard',              // Parent slug
+			'Settings',                          // Page title
+			'Settings',                          // Menu title
+			'manage_options',                    // Capability
+			'aetp_settings',                     // Menu slug
+			[ $this, 'aetrendpilot_settings' ]   // Callback function
 		);
 
 		// Workflow Logs submenu
 		add_submenu_page(
-			'aetp_automations',              // Parent slug
-			'Workflow Logs',                 // Page title
-			'Workflow Logs',                 // Menu title
-			'manage_options',                // Capability
-			'workflow_logs',                 // Menu slug
+			'trendpilot_dashboard',              // Parent slug
+			'Workflow Logs',                     // Page title
+			'Workflow Logs',                     // Menu title
+			'manage_options',                    // Capability
+			'workflow_logs',                     // Menu slug
 			[ $workflow, 'display_workflow_log' ] // Callback function
 		);
+	}
+
+	// Callback function for the Dashboard page
+	public function trendpilot_dashboard_callback() {
+
+		wp_enqueue_style(
+			'automation_engine_styles',
+			plugin_dir_url( __FILE__ ) . '../admin/css/trendpilot-pro-signup.css',
+			array(),
+			'1.0'
+		);
+
+		wp_enqueue_style(
+			'bootstrap-css',
+			esc_url( AETRENDPILOT_PLUGIN_URL . 'admin/css/bootstrap.min.css' ),
+			array(),
+			'5.1.3'
+		);
+
+		include plugin_dir_path( __FILE__ ) . '../admin/trendpilot-pro-signup.php';
+
 	}
 
 	// Callback function for the 'Settings' submenu
 	public function my_plugin_display_settings_page() {
 		include plugin_dir_path( __FILE__ ) . '../admin/feature_settings.php';
 	}
-
 
 	// Callback function for the 'Analytics' submenu
 	public function aetp_analytics_callback() {

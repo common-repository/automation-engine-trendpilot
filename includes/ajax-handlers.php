@@ -47,6 +47,7 @@ function extend_allowed_inline_styles( $allowed_styles ) {
 		'opacity',
 		'stroke-dashoffset',
 		'stroke-miterlimit',
+		'display'
 	);
 
 	// Merge the additional styles with the existing allowed styles

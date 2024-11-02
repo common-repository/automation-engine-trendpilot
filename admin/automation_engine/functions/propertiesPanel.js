@@ -63,7 +63,7 @@ function updatePropertiesPanel(actionType, nameElement) {
                             break;
                         }
                     } 
-                } 
+                }
 
                 // Append label and dropdown to properties panel
                 propertiesPanel.appendChild(labelElement);
@@ -73,7 +73,7 @@ function updatePropertiesPanel(actionType, nameElement) {
                 dropdown.addEventListener("change", function (event) {
                     properties[property] = DOMPurify.sanitize(event.target.value);
                 });
-            } 
+            }
             else if (property === "product_filters") {
                 labelElement.textContent = "Filters:";
                 
@@ -766,6 +766,28 @@ function updatePropertiesPanel(actionType, nameElement) {
                 dropdown.addEventListener("change", function (event) {
                     properties[property] = DOMPurify.sanitize(event.target.value);
                 });
+            }else if (property === "coupon_id") {
+                labelElement.textContent = "Coupon Code:";
+                var inputField = document.createElement("input");
+                inputField.name = property;
+                inputField.placeholder = "code";
+
+                // Set the initial value from block's hidden-properties
+                var hiddenPropertyValue = blockElement.querySelector(
+                    `.hidden-properties [name="${property}"]`
+                );
+                if (hiddenPropertyValue) {
+                    inputField.value = DOMPurify.sanitize(hiddenPropertyValue.value);
+                }
+
+                // Append label and input to properties panel
+                propertiesPanel.appendChild(labelElement);
+                propertiesPanel.appendChild(inputField);
+
+                // Update properties object on input change
+                inputField.addEventListener("input", function (event) {
+                    properties[property] = DOMPurify.sanitize(event.target.value);
+                });
             }
             
             else {
@@ -856,6 +878,7 @@ function saveProperties() {
     var productFilterDisplay = block.querySelector(".productFilterDisplay"); 
     var aboveBelowDisplay = block.querySelector(".above-below-display"); 
     var showHideDisplay = block.querySelector(".show-hide-display"); 
+    var paramsContainer = block.querySelector(".params-container"); 
 
     // First, try to find the input element with the name 'any_event'
     var anyEventInputElement = hiddenPropertiesDiv.querySelector('input[name="any_event"]');
@@ -962,12 +985,19 @@ function saveProperties() {
         hiddenInput.value = elementValue;
         hiddenPropertiesDiv.appendChild(hiddenInput);
 
-        // Update the display based on the element's name
+        // Update the display ba sed on the element's name
         if (elementName === "product_id") {
             productIDDisplay.textContent = element.tagName.toLowerCase() === "select"
                 ? element.options[element.selectedIndex].text
                 : elementValue;
-        } else if (elementName === "my_param") {
+        
+            if (elementValue == "") {
+                paramsContainer.setAttribute("style", "display: none;"); // Make display style permanent
+            } else {
+                paramsContainer.setAttribute("style", "display: inline;"); // Make display style permanent
+            }
+        }
+        else if (elementName === "my_param") {
             myParamDisplay.textContent = elementValue;
         } else if (elementName === "my_param_2") {
             myParam2Display.textContent = elementValue;
@@ -986,10 +1016,24 @@ function saveProperties() {
             amountDisplay.textContent = elementValue;
         } else if (elementName === "coupon_id") {
             idDisplay.textContent = elementValue;
+
+            if (elementValue == "") {
+                paramsContainer.setAttribute("style", "display: none;"); // Make display style permanent
+            } else {
+                paramsContainer.setAttribute("style", "display: inline;"); // Make display style permanent
+            }
+
         } else if (elementName === "cat_id") {
             catIdDisplay.textContent = element.tagName.toLowerCase() === "select"
                 ? element.options[element.selectedIndex].text
                 : elementValue;
+
+                if (elementValue == "") {
+                    paramsContainer.setAttribute("style", "display: none;"); // Make display style permanent
+                } else {
+                    paramsContainer.setAttribute("style", "display: inline;"); // Make display style permanent
+                } 
+
         } else if (elementName === "datapoint") {
             datapointDisplay.textContent = elementValue;
         } else if (elementName === "percentage") {
